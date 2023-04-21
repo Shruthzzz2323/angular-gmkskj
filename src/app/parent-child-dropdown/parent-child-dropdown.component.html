@@ -1,0 +1,46 @@
+<link rel="stylesheet" href="D:\newangular\my-app\src\app\app.component.scss">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-ABuwZmruJeu16egw1HuI4l4v4y+lXVihjjQ+A2Th5FLbZ48HKiM5r5Q5YP5ufd0Adi74nnFClX84b0aA1Bh8/g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<div class="container d-flex justify-content-center align-items-center">
+  <div style="margin-right: 50px;">
+  <div>
+    <label for="parent-dropdown" style="font-size: 20px; font-weight: bold;">STATE</label>
+    <select id="parent-dropdown" [(ngModel)]="selectedParent" (change)="filterChildItems()">
+      <option value="">-- State --</option>
+      <option *ngFor="let item of parentItems" [value]="item.id">{{ item.name }}</option>
+    </select>
+  </div>
+    <div style="margin-top: 50px;">
+    <button (click)="toggleAddState()" style="margin-left: 150px;">Add State</button>
+    <label for="new-parent-item"  *ngIf="showAddStateInput"></label>
+    <div class="add-state-container"  *ngIf="showAddStateInput" style="margin-left: 150px;">
+      <input id="new-parent-item" type="text" [(ngModel)]="newParentItem" placeholder=" State Name"/>
+      <button class="icon-button icons" (click)="addParentItem()"><i class="fas fa-check fa-lg" style="margin-right: 20px;"></i></button>
+      <button class="icon-button icons" (click)="cancelAddState()"><i class="fas fa-times fa-lg" style="margin-right: 20px;"></i></button>
+    </div>
+    </div>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <div *ngIf="selectedParent">
+    <div>
+      <label for="child-dropdown" style="font-size: 20px; font-weight: bold;">DISTRICT</label>
+
+
+      <select id="child-dropdown">
+        <option value="">-- District --</option>
+        <option *ngFor="let item of filteredChildItems" [value]="item.id">{{ item.name }}</option>
+      </select>
+    </div>
+  
+    <div style="margin-top: 50px;">
+      <button (click)="toggleAddDistrict()" style="margin-left: 150px;">Add District</button>
+      <label for="new-child-item" *ngIf="showAddDistrictInput"></label>
+      <div class="add-state-container" *ngIf="showAddDistrictInput" style="margin-left: 150px;">
+        <input id="new-child-item" type="text" [(ngModel)]="newChildItem" placeholder="District Name" />
+        <button class="icon-button icons" (click)="addChildItem()"><i class="fas fa-check fa-lg" style="margin-right: 20px;"></i></button>
+        <button class="icon-button icons" (click)="cancelAddDistrict()"><i class="fas fa-times fa-lg" style="margin-right: 20px;"></i></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
